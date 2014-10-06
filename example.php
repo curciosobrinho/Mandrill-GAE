@@ -1,5 +1,6 @@
 require_once("Mandrill.php");
 
+function sendMandrillEmail ($to_email, $subject, $body) {
 
 try {
     
@@ -23,13 +24,11 @@ try {
         'auto_html' => true,
         'return_path_domain' => null
     );
-    $async = false;
-    $ip_pool = 'Main Pool';
-    $send_at = '2014-09-01 01:00:01';
 
     $result = $mandrill->messages->send($message, $async, $ip_pool, $send_at);
     
-    //uncoment to see the log syslog(1, "Email sent via  Mandrill - $to_email, $subject, mg=".json_encode($message)." e result=".json_encode($result));
+    //uncoment bellow to see the log 
+    //syslog(1, "Email sent via  Mandrill - $to_email, $subject, mg=".json_encode($message)." e result=".json_encode($result));
 
     return true;
     
@@ -39,3 +38,4 @@ try {
 	    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
 	    return false;
 	}
+}
