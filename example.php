@@ -1,3 +1,6 @@
+require_once("Mandrill.php");
+
+
 try {
     
     $mandrill = new Mandrill('YOU_API_HERE');
