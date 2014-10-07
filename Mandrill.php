@@ -89,19 +89,20 @@ class Mandrill {
         $params['key'] = $this->apikey;
         $params = json_encode($params);
 
-		$data = $params;
+	$data = $params;
 
-		$context = [
+	$context = [
 		  'http' => [
 		    'method' => 'post',
 		    'content' => $data
 		  ]
-		];
+	];
 		
         $start = microtime(true);
         
-		$context = stream_context_create($context);
-		$results = file_get_contents($this->root . $url . '.json', false, $context);
+	$context = stream_context_create($context);
+	
+	$results = file_get_contents($this->root . $url . '.json', false, $context);
 		
         $this->log('Call to ' . $this->root . $url . '.json: ' . $params);
        
